@@ -1,6 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ufo Control</title>
+    <script src="script.js" defer></script>
     <style>
         html {
             text-align: center;
@@ -9,8 +15,42 @@
             margin-right: 1em;
         }
 
+        body>.container {
+            width: 100%;
+        }
+
         div {
             margin: 10px;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 80%;
+            height: 15px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
         }
 
         .flex-container {
@@ -24,19 +64,19 @@
 
         }
 
-        h1 > a:link {
+        h1>a:link {
             color: black;
         }
 
-        h1 > a:visited {
+        h1>a:visited {
             color: black;
         }
 
-        h1 > a:hover {
+        h1>a:hover {
             color: blue;
         }
 
-        div > a,
+        div>a,
         .button_style {
             background-color: #008CBA;
             border: none;
@@ -58,22 +98,29 @@
 </head>
 
 <body>
-    <h1><a href="index.html">UFO</a></h1>
-    <div>
-        <a href="nextMode">Next Mode</a>
-    </div>
-    <form action="/colourMode">
-        <div class="flex-container">
-            <input type="text" name="r" id="r" value="255">
-            <input type="text" name="g" id="g" value="0">
-            <input type="text" name="b" id="b" value="0">
+    <div class="container">
+        <h1><a href="index.html">UFO</a></h1>
+        <div>
+            <a onclick="nextMode()" href="#">Next Mode</a>
+        </div>
+        <form onsubmit="colorSet();" action="javascript:void(0);">
+            <div class="flex-container">
+                <input type="text" name="r" id="r" value="255">
+                <input type="text" name="g" id="g" value="0">
+                <input type="text" name="b" id="b" value="0">
+            </div>
+            <div>
+                <input type="submit" class="button_style" value="Set Colour">
+            </div>
+        </form>
+        <div>
+            <a onclick="ledOFF()" href="#">OFF</a>
         </div>
         <div>
-            <input type="submit" class="button_style" value="Set Colour">
+            <h3>Brightness</h3>
+            <input type="range" min="1" max="255" value="128" class="slider" id="brightness">
         </div>
-    </form>
-    <div>
-        <a href="ledOff">OFF</a>
     </div>
 </body>
+
 </html>

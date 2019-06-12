@@ -137,6 +137,7 @@ void setup() {
   
   server.on("/nextMode", handleNextMode);
   server.on("/colourMode", handleColourMode);
+  server.on("/brightness", handleBrightness);
   server.on("/ledOff", handleLedOff);
   
   server.onNotFound([]() {                              // If the client requests any URI
@@ -222,16 +223,15 @@ void handleFileUploadPage() {
   server.send(200, "text/html",uploadPage);
 }
 //************************************************************************************************************************
-//*********************************************  handleFileRead FUNCTION  ************************************************
+//*********************************************  handleNextMode FUNCTION  ************************************************
 //Handle the file read from the server
-
 void handleNextMode() {
   handleFileRead(INDEX);
   changePattern = true;
   nextPattern(); // trigger once 
 }
 //************************************************************************************************************************
-//*********************************************  handleFileRead FUNCTION  ************************************************
+//**********************************************  handleLedOff FUNCTION  *************************************************
 //Handle the file read from the server
 
 void handleLedOff() {
@@ -240,17 +240,28 @@ void handleLedOff() {
   gCurrentPatternNumber = (ARRAY_SIZE( gPatterns) - 1);
 }
 //************************************************************************************************************************
-//*********************************************  handleFileRead FUNCTION  ************************************************
+//********************************************  handleColourMode FUNCTION  ***********************************************
 //Handle the file read from the server
 
 void handleColourMode(){
   colourRed = (server.arg("r") != "") ? server.arg("r").toInt() : 0;
   colourGreen = (server.arg("g") != "") ? server.arg("g").toInt() : 0;
   colourBlue = (server.arg("b") != "") ? server.arg("b").toInt() : 0;
-  handleFileRead(INDEX);
-//  server.send(200, "text/html",mainPage);
+  server.send(200);
   gCurrentPatternNumber = 1;
 }
+
+//************************************************************************************************************************
+//********************************************  handleColourMode FUNCTION  ***********************************************
+//Handle the file read from the server
+
+void handleBrightness(){
+  int brightness = (server.arg("value") != "") ? server.arg("value").toInt() : 0;
+  brightness = constrain(brightness, 0, 255);
+  FastLED.setBrightness(brightness);
+  server.send(200);
+}
+
 //************************************************************************************************************************
 //*********************************************  handleFileRead FUNCTION  ************************************************
 //Handle the file read from the server
