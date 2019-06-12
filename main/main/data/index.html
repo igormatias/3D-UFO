@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <style>
+        html {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+
+        div {
+            margin: 10px;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .flex-container>input {
+            margin-left: 10px;
+            margin-right: 10px;
+
+        }
+
+        a,
+        .button_style {
+            background-color: #008CBA;
+            border: none;
+            color: white;
+            width: 80%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 26px;
+            -moz-border-radius: 26px;
+            -webkit-border-radius: 26px;
+            border: none;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>UFO</h1>
+    <div>
+        <a href="nextMode">Next Mode</a>
+    </div>
+    <form action="/colourMode">
+        <div class="flex-container">
+            <input type="text" name="r" id="r" value="255">
+            <input type="text" name="g" id="g" value="0">
+            <input type="text" name="b" id="b" value="0">
+        </div>
+        <div>
+            <input type="submit" class="button_style" value="Set Colour">
+        </div>
+    </form>
+    <div>
+        <p><a href="ledOff">OFF</a></p>
+    </div>
+</body>
+</html>
