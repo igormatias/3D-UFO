@@ -20,7 +20,7 @@
         }
 
         div {
-            margin: 10px;
+            margin: 1em;
         }
 
         .slider {
@@ -58,10 +58,25 @@
             justify-content: center;
         }
 
-        .flex-container>input {
+        .flex-container>div {
             margin-left: 10px;
             margin-right: 10px;
+        }
 
+        .flex-container>div>p {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .flex-container>div>p>input {
+            width: 10em;
+        }
+
+        @media (max-width: 800px) {
+            .flex-container {
+                display: block;
+                align-content: center;
+            }
         }
 
         h1>a:link {
@@ -76,7 +91,6 @@
             color: blue;
         }
 
-        div>a,
         .button_style {
             background-color: #008CBA;
             border: none;
@@ -94,32 +108,58 @@
             border: none;
 
         }
+
+        #rgbBar {
+            padding-top: 12px;
+            height: 40px;
+            }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1><a href="index.html">UFO</a></h1>
-        <div>
-            <a onclick="nextMode()" href="#">Next Mode</a>
-        </div>
-        <form onsubmit="colorSet();" action="javascript:void(0);">
-            <div class="flex-container">
-                <input type="text" name="r" id="r" value="255">
-                <input type="text" name="g" id="g" value="0">
-                <input type="text" name="b" id="b" value="0">
+    <div>
+        <nav class="flex-container">
+            <div>
+                Main Menu
+            </div>
+        </nav>
+        <main>
+            <h1><a href="index.html">UFO</a></h1>
+            <div>
+                <a class="button_style" onclick="nextMode()" href="#">Next Mode</a>
+            </div>
+            <form onsubmit="colourSet();" action="javascript:void(0);">
+                <div class="flex-container">
+                    <div>
+                        <p>R: <input type="range" class="slider" min="0" max="255" name="r" id="r" value="255"></p>
+                        <p id="rlabel"></p>
+                    </div>
+                    <div>
+                        <p>G: <input type="range" class="slider" min="0" max="255" name="g" id="g" value="0"></p>
+                        <p id="glabel"></p>
+                    </div>
+                    <div>
+                        <p>B: <input type="range" class="slider" min="0" max="255" name="b" id="b" value="0"></p>
+                        <p id="blabel"></p>
+                    </div>
+                </div>
+                <div>
+                    <div id="rgbBar" class="button_style"></div>
+                </div>
+
+                <div>
+                    <input type="submit" class="button_style" value="Set Colour">
+                </div>
+            </form>
+            <div>
+                <a class="button_style" onclick="ledOFF()" href="#">OFF</a>
             </div>
             <div>
-                <input type="submit" class="button_style" value="Set Colour">
+                <h3>Brightness</h3>
+                <p><input type="range" min="1" max="255" value="128" class="slider" id="brightness"></p>
+                <p id="brightnessLabel"></p>
             </div>
-        </form>
-        <div>
-            <a onclick="ledOFF()" href="#">OFF</a>
-        </div>
-        <div>
-            <h3>Brightness</h3>
-            <input type="range" min="1" max="255" value="128" class="slider" id="brightness">
-        </div>
+        </main>
     </div>
 </body>
 

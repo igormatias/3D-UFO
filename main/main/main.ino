@@ -87,7 +87,6 @@ void setup() {
   wifiMulti.addAP("Staff", "cef@Richmondsouth88");   // add Wi-Fi networks you want to connect to
   wifiMulti.addAP("Xoxo", "LollaeCharlotte");
   wifiMulti.addAP("ssid_from_AP_3", "your_password_for_AP_3");
-  
   Serial.begin(115200);
   Serial.println("Connecting ...");
   int i = 0;
@@ -110,9 +109,7 @@ void setup() {
 
   SPIFFS.begin();                           // Start the SPI Flash Files System
   
-  
   /*
-  WiFi.mode(WIFI_AP);
   Serial.println();
   Serial.print("Configuring access point...");
   // You can remove the password parameter if you want the AP to be open.
@@ -120,11 +117,10 @@ void setup() {
   WiFi.softAP(ssid, password);
 
   dnsServer.start(DNS_PORT, "*", apIP);
-
-  
-  
   */
-  //server.on("/", handleRoot);
+  
+  
+  server.on("/", handleRoot);
   
   server.on("/upload", HTTP_GET, []() {                 // if the client requests the upload page
     server.send(200, "text/html",uploadPage);
@@ -221,6 +217,13 @@ void loop()
 
 void handleFileUploadPage() {
   server.send(200, "text/html",uploadPage);
+}
+
+//************************************************************************************************************************
+//********************************************  handleFileUpload FUNCTION  ***********************************************
+//Handle the file read from the server
+void handleRoot() {
+  handleFileRead(server.uri());
 }
 //************************************************************************************************************************
 //*********************************************  handleNextMode FUNCTION  ************************************************
