@@ -18,7 +18,7 @@ rSlider.addEventListener("touchend", changeColor);
 gSlider.addEventListener("touchend", changeColor);
 bSlider.addEventListener("touchend", changeColor);
 
-function updateHTML(){
+function updateHTML() {
     let r = rSlider.value;
     let g = gSlider.value;
     let b = bSlider.value;
@@ -30,37 +30,37 @@ function updateHTML(){
     let newColor = "rgb(" + r + ", " + g + ", " + b + ")";
     rgbBar.style.backgroundColor = newColor;
     rgbBar.innerHTML = newColor;
-    if ((Number(r) + Number(g) + Number(b) / 3) < 128){
+    if ((Number(r) + Number(g) + Number(b) / 3) < 128) {
         rgbBar.style.color = "white";
     }
-    else{
+    else {
         rgbBar.style.color = "black";
     }
 }
 
-function changeColor(){
+function changeColor() {
     updateHTML();
     colourSet();
 }
 
-window.onload = function(){
+window.onload = function () {
     updateHTML();
 
 }
-function changeBrightness(e){
+function changeBrightness(e) {
     updateHTML();
     sendAJAX("brightness?value=" + brightness.value);
 }
 
-function nextMode(){
+function nextMode() {
     sendAJAX("nextMode");
 }
 
-function ledOFF(){
+function ledOFF() {
     sendAJAX("ledOff");
 }
 
-function sendAJAX(val){
+function sendAJAX(val) {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.status == 200 && this.readyState == 4) {
@@ -72,5 +72,5 @@ function sendAJAX(val){
 }
 
 function colourSet() {
-    sendAJAX("colourMode?r=" + rSlider.value +"&g=" + gSlider.value + "&b=" + bSlider.value);
+    sendAJAX("colourMode?r=" + rSlider.value + "&g=" + gSlider.value + "&b=" + bSlider.value);
 }
